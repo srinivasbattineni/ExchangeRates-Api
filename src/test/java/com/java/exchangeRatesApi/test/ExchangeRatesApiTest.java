@@ -56,7 +56,7 @@ class ExchangeRatesApiTest {
 		System.out.println("Test case start!!");
 		exchangeRate.setRates(rates);
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInfoByDate(Mockito.anyString())).thenReturn(exchangeRate);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Details_By_Date/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_details_by_date/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		String expected = "{\"success\":\"true\",\"timestamp\":\"564687465\",\"historical\":\"true\",\"base\":\"EUR\",\"date\":\"2021-10-01\",\"rates\":{\"GBP\":0.853913}}";
@@ -66,7 +66,7 @@ class ExchangeRatesApiTest {
 	@Test
 	void getExchangeRatesInfoByDateNoDataFound() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInfoByDate(Mockito.anyString())).thenReturn(null);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Details_By_Date/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_details_by_date/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
@@ -75,7 +75,7 @@ class ExchangeRatesApiTest {
 	@Test
 	void getExchangeRatesInfoByInvalidDate() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInfoByDate(null)).thenReturn(null);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Details_By_Date/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_details_by_date/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
@@ -94,7 +94,7 @@ class ExchangeRatesApiTest {
 		System.out.println("Test case start!!");
 		exchangeRate.setRates(rates);
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInfoByDate(null)).thenReturn(exchangeRate);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Details_By_Date/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_details_by_date/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
@@ -116,7 +116,7 @@ class ExchangeRatesApiTest {
 		exchangeRateList.add(exchangeRate);
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInBwtDates(Mockito.anyString(), Mockito.anyString()))
 				.thenReturn(exchangeRateList);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_In_Bwt_Dates/fromdate/todate")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_in_bwt_dates/fromdate/todate")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		String expected = "[{\"success\":\"true\",\"timestamp\":\"564687465\",\"historical\":\"true\",\"base\":\"EUR\",\"date\":\"2021-10-01\",\"rates\":{\"GBP\":0.853913}}]";
@@ -127,7 +127,7 @@ class ExchangeRatesApiTest {
 	void getExchangeRatesInBwtDatesWithNoData() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRatesInBwtDates(Mockito.anyString(), Mockito.anyString()))
 				.thenReturn(null);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_In_Bwt_Dates/fromdate/todate")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_in_bwt_dates/fromdate/todate")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
@@ -137,7 +137,7 @@ class ExchangeRatesApiTest {
 	void getExchangeRates() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRates(Mockito.anyString()))
 				.thenReturn(ExchangeRatesConstants.SAVE_MSG);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Data_Few_Currencies/access_Key")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_data_few_currencies/access_Key")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertEquals(ExchangeRatesConstants.SAVE_MSG, result.getResponse().getContentAsString());
@@ -146,7 +146,7 @@ class ExchangeRatesApiTest {
 	@Test
 	void getExchangeRatesWrongAccessKey() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRates(null)).thenReturn(ExchangeRatesConstants.SAVE_MSG);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_Data_Few_Currencies/access_Key")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_data_few_currencies/access_Key")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
@@ -156,7 +156,7 @@ class ExchangeRatesApiTest {
 	void getExchangeRatesByDate() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRatesByDate(Mockito.anyString(), Mockito.anyString()))
 				.thenReturn(ExchangeRatesConstants.SAVE_MSG);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_By_Date/access_Key/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_by_date/access_key/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertEquals(ExchangeRatesConstants.SAVE_MSG, result.getResponse().getContentAsString());
@@ -166,7 +166,7 @@ class ExchangeRatesApiTest {
 	void getExchangeRatesByDateWrongAccessKey() throws Exception {
 		Mockito.when(exchangeRatesApiService.getExchangeRatesByDate(null, null))
 				.thenReturn(ExchangeRatesConstants.SAVE_MSG);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_Rates_By_Date/access_Key/date")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/exchange_rates_by_date/access_key/date")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		assertTrue(result.getResponse().getContentAsString().isEmpty());
