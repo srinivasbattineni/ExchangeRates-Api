@@ -34,7 +34,7 @@ public class ExchangeRateApiController {
 	 * @return Success message as a response
 	 * @throws JsonProcessingException
 	 */
-	@GetMapping(value="/exchange_Rates_Data_Few_Currencies/{access_Key}")
+	@GetMapping(value="/exchange_rates_data_few_currencies/{access_Key}")
 	private String getExchangeRates(@PathVariable("access_Key") String accessKey) throws JsonProcessingException {
 		logger.info("ExchangeRateController : getExchangeRates Entry");
 		return exchangeRatesApiService.getExchangeRates(accessKey);
@@ -50,7 +50,7 @@ public class ExchangeRateApiController {
 	 * @return Success message response
 	 * @throws JsonProcessingException
 	 */
-	@GetMapping(value="/exchange_Rates_By_Date/{accessKey}/{date}")
+	@GetMapping(value="/exchange_rates_by_date/{accessKey}/{date}")
 	private String getExchangeRatesByDate(@PathVariable("accessKey") String accessKey,@PathVariable("date") String date) throws JsonProcessingException {
 		logger.info("ExchangeRateController : getExchangeRatesByDate Entry ");
 		return exchangeRatesApiService.getExchangeRatesByDate(accessKey,date);
@@ -65,7 +65,7 @@ public class ExchangeRateApiController {
 	 * @return Success message response
 	 * @throws JsonProcessingException
 	 */
-	@GetMapping(value="/exchange_Rates_Data_All_Currencies/{accessKey}")
+	@GetMapping(value="/exchange_rates_data_all_currencies/{accessKey}")
 	private String getExchangeRatesData(@PathVariable("accessKey") String accessKey) throws JsonProcessingException {
 		logger.info("ExchangeRateController : getExchangeRatesData Entry");
 		return exchangeRatesApiService.getExchangeRatesData(accessKey);
@@ -79,7 +79,7 @@ public class ExchangeRateApiController {
 	 * @param date
 	 * @return Exchange Rates 
 	 */
-	@GetMapping(value="/exchange_Rates_Details_By_Date/{date}")
+	@GetMapping(value="/exchange_rates_details_by_date/{date}")
 	private Object getExchangeRatesInfoByDate(@PathVariable("date") String date) {
 		logger.info("ExchangeRateController : getExchangeRatesInfoByDate Entry ");
 		return exchangeRatesApiService.getExchangeRatesInfoByDate(date);//2021-10-08
@@ -94,7 +94,7 @@ public class ExchangeRateApiController {
 	 * @param toDate
 	 * @return List of Exchange Rates
 	 */
-	@GetMapping(value="/exchange_Rates_In_Bwt_Dates/{fromDate}/{toDate}")
+	@GetMapping(value="/exchange_rates_in_bwt_dates/{fromDate}/{toDate}")
 	private List<Object> getExchangeRatesInBwtDates(@PathVariable("fromDate") String fromDate,@PathVariable("toDate") String toDate) {
 		logger.info("ExchangeRateController : getExchangeRatesInBwtDates Entry");
 		return exchangeRatesApiService.getExchangeRatesInBwtDates(fromDate,toDate);//2021-10-08
